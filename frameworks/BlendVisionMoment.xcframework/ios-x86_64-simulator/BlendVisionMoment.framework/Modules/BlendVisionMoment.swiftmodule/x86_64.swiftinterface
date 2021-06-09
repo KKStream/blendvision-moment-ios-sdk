@@ -1,0 +1,67 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name BlendVisionMoment
+@_exported import BlendVisionMoment
+import Foundation
+import GoogleCast.GCKUICastButton
+import GoogleCast
+import KKSNetwork
+import KKSPaaS
+import Swift
+import UIKit
+public class PlayerContext {
+  public enum BarItem : Swift.Equatable {
+    case airplay
+    case chromecast
+    case settings
+    case custom(view: UIKit.UIView?)
+    public static func == (a: BlendVisionMoment.PlayerContext.BarItem, b: BlendVisionMoment.PlayerContext.BarItem) -> Swift.Bool
+  }
+  public struct Configuration {
+    public var defaultResolution: Swift.Int?
+    public init(defaultResolution: Swift.Int? = nil)
+  }
+  public var config: BlendVisionMoment.PlayerContext.Configuration
+  public var barItems: [BlendVisionMoment.PlayerContext.BarItem]
+  public init(config: BlendVisionMoment.PlayerContext.Configuration = Configuration(), barItems: [BlendVisionMoment.PlayerContext.BarItem])
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Configuration {
+  public static var accessToken: Swift.String {
+    get
+  }
+  public static func updateAccessToken(_ accessToken: Swift.String)
+  @objc deinit
+}
+extension Configuration {
+  public static func setupGoogleCast(applicationID: Swift.String)
+  public static func setupGoogleCast(context: GoogleCast.GCKCastContext)
+}
+extension Configuration {
+  public static var version: Swift.String {
+    get
+  }
+  public static var deviceId: Swift.String? {
+    get
+  }
+}
+public enum Environment : Swift.String, Swift.CaseIterable {
+  case prod
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BlendVisionMoment.Environment]
+  public typealias RawValue = Swift.String
+  public static var allCases: [BlendVisionMoment.Environment] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class Utils {
+  @discardableResult
+  public static func presentPlayer(_ context: BlendVisionMoment.PlayerContext, accessToken: Swift.String = Configuration.accessToken, in viewController: UIKit.UIViewController? = nil) -> UIKit.UIViewController?
+  @objc deinit
+}
+extension BlendVisionMoment.Environment : Swift.Equatable {}
+extension BlendVisionMoment.Environment : Swift.Hashable {}
+extension BlendVisionMoment.Environment : Swift.RawRepresentable {}

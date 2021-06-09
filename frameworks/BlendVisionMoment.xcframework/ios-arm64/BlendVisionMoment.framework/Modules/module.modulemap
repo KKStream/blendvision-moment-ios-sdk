@@ -1,0 +1,11 @@
+framework module BlendVisionMoment {
+  umbrella header "BlendVisionMoment.h"
+
+  export *
+  module * { export * }
+}
+
+module BlendVisionMoment.Swift {
+    header "BlendVisionMoment-Swift.h"
+    requires objc
+}

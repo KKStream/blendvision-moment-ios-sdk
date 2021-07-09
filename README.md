@@ -29,7 +29,8 @@ To use BlendVisionMoment SDK within your app, following the steps below
     - KKSNetwork (Required)
     - KKSLocalization (Required)
     - SDWebImage (Required)
-    - GoogleCast _(Optional)_
+
+⚠️ Though GoogleCast feature is not supported yet, it is required to put GoogleCast under the framework search path to avoid compiler error. 
 
 ## Sample Code
 
@@ -59,8 +60,7 @@ let context = PlayerContext(config: Configuration(defaultResolution: 720),
 context.config.defaultResolution = 1080
 
 // Update bar items
-// Chromecast button will be hidden if GoogleCast is not supported
-context.barItem = [.airplay, .chromecast, .settings]
+context.barItem = [.airplay, .settings]
 ```
 
 #### Player Presentation
@@ -81,21 +81,4 @@ Utils.presentPlayer(context, accessToken: "access_token")
 ```swift
 // Update access token at anytime
 Configuration.updateAccessToken("access_token")
-```
-
-### Opt-in GoogleCast
-
-To opt-in GoogleCast and support casting
-
-1. Add GoogleCast framework into your app target
-2. Set up GoogleCast receiver application ID in `AppDelegate`
-
-```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-    // Opt-in GoogleCast
-    Configuration.setupGoogleCast(applicationID: GOOGLE_CAST_APPLICATION_ID)
-
-    return true
-}
 ```

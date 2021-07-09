@@ -21,8 +21,7 @@ class ViewController: UIViewController {
         context.config.defaultResolution = 1080
 
         // Update bar items
-        // chromecast button will be hidden if GoogleCast is not supported
-        context.barItems = [.airplay, .chromecast, .settings]
+        context.barItems = [.airplay, .settings]
 
         // Modally present player
         Utils.presentPlayer(context)

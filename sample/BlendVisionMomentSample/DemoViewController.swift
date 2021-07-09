@@ -11,7 +11,7 @@ import BlendVisionMoment
 
 struct DemoModel {
     static var config: PlayerContext.Configuration = PlayerContext.Configuration()
-    static var barItems: [PlayerContext.BarItem] = [.airplay, .chromecast, .settings]
+    static var barItems: [PlayerContext.BarItem] = [.airplay, .settings]
 }
 
 class DemoViewController: UITableViewController {
@@ -27,7 +27,7 @@ class DemoViewController: UITableViewController {
         var rows: [Row] {
             switch self {
             case .content: return [.resolution]
-            case .barItems: return [.airplay, .chromecast, .settings]
+            case .barItems: return [.airplay, .settings]
             case .action: return [.presentPlayer]
             }
         }
@@ -38,7 +38,6 @@ class DemoViewController: UITableViewController {
 
         // Bar Items
         case airplay = "AirPlay"
-        case chromecast = "Chromecast"
         case settings = "Settings"
 
         // Action
@@ -50,7 +49,6 @@ class DemoViewController: UITableViewController {
 
     private let resolutionItem = ResolutionItem()
     private let airplayItem = AirPlayItem()
-    private let chromecastItem = ChromecastItem()
     private let settingsItem = SettingsItem()
     private let presentPlayerItem = PresentPlayerItem()
 
@@ -74,8 +72,6 @@ class DemoViewController: UITableViewController {
             cell.detailTextLabel?.text = resolutionItem.text
         case .airplay:
             cell.detailTextLabel?.text = airplayItem.text
-        case .chromecast:
-            cell.detailTextLabel?.text = chromecastItem.text
         case .settings:
             cell.detailTextLabel?.text = settingsItem.text
         case .presentPlayer:
@@ -98,10 +94,6 @@ class DemoViewController: UITableViewController {
             })
         case .airplay:
             airplayItem.action(in: self, completion: {
-                tableView.reloadSections(IndexSet([indexPath.section]), with: .none)
-            })
-        case .chromecast:
-            chromecastItem.action(in: self, completion: {
                 tableView.reloadSections(IndexSet([indexPath.section]), with: .none)
             })
         case .settings:
@@ -156,22 +148,6 @@ extension DemoViewController {
                 DemoModel.barItems.remove(at: index)
             } else {
                 DemoModel.barItems.append(.airplay)
-            }
-            completion()
-        }
-    }
-
-    struct ChromecastItem {
-        var text: String? {
-            guard let index = DemoModel.barItems.firstIndex(of: .chromecast) else { return "" }
-            return String(index + 1)
-        }
-
-        func action(in viewController: UIViewController, completion: @escaping () -> Void) {
-            if let index = DemoModel.barItems.firstIndex(of: .chromecast) {
-                DemoModel.barItems.remove(at: index)
-            } else {
-                DemoModel.barItems.append(.chromecast)
             }
             completion()
         }

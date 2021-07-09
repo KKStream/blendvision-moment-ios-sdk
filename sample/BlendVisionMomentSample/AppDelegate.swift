@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        // [Optional] Uncomment next line to opt-in GoogleCast
-//        Configuration.setupGoogleCast(applicationID: googleCastApplicationId)
-
         if #available(iOS 13.0, *) {} else {
             let viewControllers = [UINavigationController(rootViewController: DemoViewController(),
                                                           title: "BlendVision Moment"),
